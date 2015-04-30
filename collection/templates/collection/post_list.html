@@ -1,0 +1,24 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Marche</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/collection.css' %}">
+    <meta charset="UTF-8">
+</head>
+<body>
+<div>
+    <h1><a href="/">Posts</a></h1>
+</div>
+
+{% for post in posts %}
+    <div>
+        <h2><a href="">{{ post.title }}</a></h2>
+        <p>{{ post.text|linebreaks }}</p>
+        <p>published: {{ post.last_updated }}</p>
+    </div>
+{% endfor %}
+</body>
+</html>
