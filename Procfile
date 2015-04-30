@@ -1,0 +1,1 @@
+web: waitress-serve --port=$PORT marche.wsgi:application
