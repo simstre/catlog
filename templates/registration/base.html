@@ -1,0 +1,19 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <title>Marche</title>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="{% static 'css/collection.css' %}">
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="page-header">
+        <h1><a href="/">Marche</a></h1>
+    </div>
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
