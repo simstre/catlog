@@ -83,6 +83,8 @@ class Base(Configuration):
     STATIC_ROOT = 'staticfiles'
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
+    LOGIN_URL = '/login/'
+
 class Dev(Base):
     # Database
     # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
