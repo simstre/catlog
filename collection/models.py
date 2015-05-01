@@ -8,7 +8,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(
             default=timezone.now)
     last_updated = models.DateTimeField(
-            blank=True, null=True)
+            default=timezone.now, null=True)
 
     def publish(self):
         self.last_updated = timezone.now()

@@ -5,7 +5,7 @@
     <div>
         <h2><a href="{% url 'collection.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaks }}</p>
-        <p>published: {{ post.last_updated }}</p>
+        <p>created: {{ post.created_date }}</p>
     </div>
 {% endfor %}
 {% endblock content %}
