@@ -3,8 +3,8 @@ from django.utils import timezone
 from .models import Post
 from .forms import PostForm
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-
 
 def post_list(request, username=None):
     if username:
@@ -21,6 +21,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'collection/post_detail.html', {'post': post})
 
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -34,6 +35,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'collection/post_edit.html', {'form': form})
 
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":

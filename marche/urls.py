@@ -8,4 +8,5 @@ urlpatterns = [
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('collection.urls')),
+    url('^', include('django.contrib.auth.urls')),
 ]
