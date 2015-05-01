@@ -3,7 +3,7 @@
 {% block content %}
 {% for post in posts %}
     <div>
-        <h2><a href="">{{ post.title }}</a></h2>
+        <h2><a href="{% url 'collection.views.post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
         <p>{{ post.text|linebreaks }}</p>
         <p>published: {{ post.last_updated }}</p>
     </div>
