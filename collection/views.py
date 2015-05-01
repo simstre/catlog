@@ -2,9 +2,19 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 from .models import Post
 from .forms import PostForm
+from django.contrib.auth.models import User
+from django.core.exceptions import ObjectDoesNotExist
 
-def post_list(request):
-    posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('last_updated')
+
+def post_list(request, username=None):
+    if username:
+        try:
+            uid = User.objects.get(username=username).pk
+            posts = Post.objects.filter(created_date__lte=timezone.now(), user=uid).order_by('last_updated')
+        except ObjectDoesNotExist:
+            posts = None
+    else:
+        posts = Post.objects.filter(created_date__lte=timezone.now()).order_by('last_updated')
     return render(request, 'collection/post_list.html', {'posts': posts})
 
 def post_detail(request, pk):
