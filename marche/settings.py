@@ -34,6 +34,7 @@ class Base(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'social.apps.django_app.default', #python social app
         'collection',
     )
 
@@ -46,6 +47,11 @@ class Base(Configuration):
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
         'django.middleware.security.SecurityMiddleware',
+    )
+
+    AUTHENTICATION_BACKENDS = (
+        'django.contrib.auth.backends.ModelBackend',
+        'social.backends.facebook.FacebookOAuth2',
     )
 
     ROOT_URLCONF = 'marche.urls'
@@ -61,6 +67,8 @@ class Base(Configuration):
                     'django.template.context_processors.request',
                     'django.contrib.auth.context_processors.auth',
                     'django.contrib.messages.context_processors.messages',
+                    'social.apps.django_app.context_processors.backends',
+                    'social.apps.django_app.context_processors.login_redirect',
                 ],
             },
         },
@@ -84,6 +92,13 @@ class Base(Configuration):
     STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)
 
     LOGIN_URL = '/login/'
+    LOGIN_REDIRECT_URL = '/done/'
+    URL_PATH = ''
+    SOCIAL_AUTH_STRATEGY = 'social.strategies.django_strategy.DjangoStrategy'
+    SOCIAL_AUTH_STORAGE = 'social.apps.django_app.default.models.DjangoStorage'
+    SOCIAL_AUTH_FACEBOOK_KEY = os.environ.get("SOCIAL_AUTH_FACEBOOK_KEY ", "1580839972167048")
+    SOCIAL_AUTH_FACEBOOK_SECRET = os.environ.get("SOCIAL_AUTH_FACEBOOK_SECRET", "fbd85b9af7a38ad7b9262397d83322c6")
+    #SOCIAL_AUTH_FACEBOOK_SCOPE = ['email'] # get extra info from facebook
 
 class Dev(Base):
     # Database

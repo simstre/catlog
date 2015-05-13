@@ -28,7 +28,8 @@ def post_new(request):
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
-            post.last_updated = timezone.now
+            post.last_updated = timezone.now()
+            post.created_date = timezone.now()
             post.save()
             return redirect('collection.views.post_detail', pk=post.pk)
     else:
